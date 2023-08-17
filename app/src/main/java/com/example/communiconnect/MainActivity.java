@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    private Button logout;
+   // private Button logout;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "About Selected", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.logoutof) {
                     Toast.makeText(MainActivity.this, "Login Selected", Toast.LENGTH_SHORT).show();
+                    FirebaseAuth.getInstance().signOut();
+                Toast.makeText(MainActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
+               startActivity(new Intent(MainActivity.this, logreg.class));
+
                 } else if (itemId == R.id.groups) {
                     Toast.makeText(MainActivity.this, "Share Selected", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.posts) {
