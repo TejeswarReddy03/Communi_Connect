@@ -19,11 +19,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText username;
+
+    private EditText Postal_code;
     private EditText email;
     private EditText password;
     private Button register;
@@ -37,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
+        Postal_code=findViewById(R.id.postalcode);
         password = findViewById(R.id.password);
         register = findViewById(R.id.register);
         mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -49,27 +54,34 @@ public class RegisterActivity extends AppCompatActivity {
                 String txt_username = username.getText().toString();
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
-
+                String postal_code=Postal_code.getText().toString();
                 if(TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText(RegisterActivity.this, "Empty credentials ", Toast.LENGTH_SHORT).show();
                 } else if (txt_password.length()<6) {
                     Toast.makeText(RegisterActivity.this, "password is short ", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    registerUser(txt_username, txt_email, txt_password);
+                    registerUser(txt_username, txt_email, txt_password,postal_code);
                 }
             }
         });
 
     }
 
-    private void registerUser(String username, String email, String password) {
+    private void registerUser(String username, String email, String password,String postal_code) {
          auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
              @Override
              public void onSuccess(AuthResult authResult) {
                  HashMap<String, Object>map = new HashMap<>();
                  map.put("username", username);
                  map.put("email", email);
+                 map.put("postalcode",postal_code);
+
+//                 List<String> postsList = new ArrayList<>();
+//                 postsList.add("firststring");
+//                 postsList.add("secondstr");
+//                 map.put("posts", postsList);
+
                  map.put("id", auth.getCurrentUser().getUid());
 
                  mRootRef.child("Users").child(auth.getCurrentUser().getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+
 public class LoginActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
@@ -47,7 +48,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                startActivity((new Intent(LoginActivity.this, MainActivity.class)));
+                User user = new User("exampleUsername", email);
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("user", user);
+
+                startActivity(intent);
+
             }
         })
                 .addOnFailureListener(new OnFailureListener() {

@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
+
+    public String email;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
@@ -37,6 +39,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        if (intent != null) {
+            User user = (User) intent.getSerializableExtra("user");
+            if (user != null) {
+                String username = user.getUsername();
+                email = user.getEmail();
+              //  Toast.makeText(MainActivity.this, username+", "+email, Toast.LENGTH_SHORT).show();
+
+            }
+        }
 
 
 //        logout = findViewById(R.id.logout);
@@ -68,20 +80,25 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.home) {
                     Toast.makeText(MainActivity.this, "Home Selected", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.map) {
-                    Toast.makeText(MainActivity.this, "Contact Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Map Selected", Toast.LENGTH_SHORT).show();
+
+                    User user = new User("exampleUsername", email);
+
+                    Intent intent = new Intent(MainActivity.this, MakingandSeeingMarker.class);
+                   intent.putExtra("user", user);
+
+                    startActivity(intent);
                 } else if (itemId == R.id.alert) {
-                    Toast.makeText(MainActivity.this, "Gallery Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "alerts Selected", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.groups) {
-                    Toast.makeText(MainActivity.this, "About Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "groups Selected", Toast.LENGTH_SHORT).show();
                 } else if (itemId == R.id.logoutof) {
-                    Toast.makeText(MainActivity.this, "Login Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Logout Selected", Toast.LENGTH_SHORT).show();
                     FirebaseAuth.getInstance().signOut();
                 Toast.makeText(MainActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
                startActivity(new Intent(MainActivity.this, logreg.class));
 
-                } else if (itemId == R.id.groups) {
-                    Toast.makeText(MainActivity.this, "Share Selected", Toast.LENGTH_SHORT).show();
-                } else if (itemId == R.id.posts) {
+                }  else if (itemId == R.id.posts) {
                     Toast.makeText(MainActivity.this, "Rate Us Selected", Toast.LENGTH_SHORT).show();
                 }
 
