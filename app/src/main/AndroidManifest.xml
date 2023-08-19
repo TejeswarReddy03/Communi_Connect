@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CommuniConnect"
         tools:targetApi="31">
+        <activity
+            android:name=".Markinginfo"
+            android:exported="false" />
+        <activity
+            android:name=".SeeingMarkers"
+            android:exported="false" />
+        <activity
+            android:name=".Marking"
+            android:exported="false" />
+        <activity
+            android:name=".MakingandSeeingMarker"
+            android:exported="false" />
         <activity
             android:name=".splashscreen"
             android:exported="true">
@@ -42,8 +58,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAmBw8p8Jrf5peQPAO9KAixKT2LSojFV_I" />
     </application>
 
 </manifest>
