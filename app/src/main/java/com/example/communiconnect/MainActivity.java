@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }  else if (itemId == R.id.posts) {
                     Toast.makeText(MainActivity.this, "Rate Us Selected", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, userlists.class));
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

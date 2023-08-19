@@ -29,6 +29,9 @@
             android:name=".MakingandSeeingMarker"
             android:exported="false" />
         <activity
+            android:name=".userlists"
+            android:exported="false" />
+        <activity
             android:name=".splashscreen"
             android:exported="true">
             <intent-filter>
