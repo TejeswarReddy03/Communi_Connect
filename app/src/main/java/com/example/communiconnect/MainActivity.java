@@ -98,8 +98,19 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Logged Out!", Toast.LENGTH_SHORT).show();
                startActivity(new Intent(MainActivity.this, logreg.class));
 
-                }  else if (itemId == R.id.posts) {
-                    Toast.makeText(MainActivity.this, "Rate Us Selected", Toast.LENGTH_SHORT).show();
+                }
+                else if (itemId == R.id.posts) {
+                    Toast.makeText(MainActivity.this, "Opening Posts", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, userlists.class));
+                }
+                else if (itemId == R.id.about) {
+                    Toast.makeText(MainActivity.this, "about selected", Toast.LENGTH_SHORT).show();
+                    User user = new User("exampleUsername", email);
+                    Intent intentt = new Intent(MainActivity.this, userlists.class);
+                    intentt.putExtra("user", user);
+                    startActivity(intentt);
+
+
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);

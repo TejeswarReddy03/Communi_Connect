@@ -46,7 +46,7 @@ public class Markinginfo extends AppCompatActivity {
             if (user != null) {
                 String username = user.getUsername();
                 email = user.getEmail();
-                Toast.makeText(Markinginfo.this, username+", "+email, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Markinginfo.this, username+", "+email, Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -73,7 +73,7 @@ public class Markinginfo extends AppCompatActivity {
                     Intent intent = new Intent(Markinginfo.this, Marking.class);
                     user.addlocationinfo(0.0,0.0,titles,descriptions);
                     intent.putExtra("user", user);
-                    Toast.makeText(Markinginfo.this, "in the else  "+email, Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(Markinginfo.this, "in the else  "+email, Toast.LENGTH_SHORT).show();
 
                     startActivity(intent);
                 }
