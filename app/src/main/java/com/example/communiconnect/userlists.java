@@ -35,8 +35,11 @@ public class userlists extends AppCompatActivity {
         list = new ArrayList<>();
         myAdapter = new MyAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
+
         Intent intent = getIntent();
         User userr = (User) intent.getSerializableExtra("user");
+
+
 
 
         database.addValueEventListener(new ValueEventListener() {
@@ -77,6 +80,7 @@ public class userlists extends AppCompatActivity {
                     else{
                             list.add(user);
                     }
+
 
 
                 }
