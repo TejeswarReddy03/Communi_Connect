@@ -24,14 +24,14 @@ public class MakingandSeeingMarker extends AppCompatActivity {
             if (user != null) {
                 String username = user.getUsername();
                 email = user.getEmail();
-                 Toast.makeText(MakingandSeeingMarker.this, username+", "+email, Toast.LENGTH_SHORT).show();
+               //  Toast.makeText(MakingandSeeingMarker.this, username+", "+email, Toast.LENGTH_SHORT).show();
 
             }
         }
         viewMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MakingandSeeingMarker.this, "going to viewmap", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MakingandSeeingMarker.this, "going to viewmap", Toast.LENGTH_SHORT).show();
                 User user = new User("exampleUsername", email);
 
                 Intent intent = new Intent(MakingandSeeingMarker.this, Markinginfo.class);
@@ -46,8 +46,12 @@ public class MakingandSeeingMarker extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MakingandSeeingMarker.this, "going to see markers", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MakingandSeeingMarker.this,SeeingMarkers.class);
+               // Toast.makeText(MakingandSeeingMarker.this, "going to viewmap", Toast.LENGTH_SHORT).show();
+                User user = new User("exampleUsername", email);
+
+                Intent intent = new Intent(MakingandSeeingMarker.this, SeeingMarkers.class);
+                intent.putExtra("user", user);
+
                 startActivity(intent);
             }
         });

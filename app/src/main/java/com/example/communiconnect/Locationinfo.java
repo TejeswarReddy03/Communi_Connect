@@ -2,7 +2,7 @@ package com.example.communiconnect;
 import java.io.Serializable;
 
 class LocationInfo implements Serializable {
-    private static final long serialVersionUID = 1L; // Adding a serial version UID
+    private static final long serialVersionUID = 1L;
 
     private double latitude;
     private double longitude;
@@ -16,7 +16,7 @@ class LocationInfo implements Serializable {
         this.description = description;
     }
 
-    // Getters and setters for the fields
+
     public double getLatitude() {
         return latitude;
     }

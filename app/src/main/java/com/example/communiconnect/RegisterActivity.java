@@ -69,40 +69,52 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String username, String email, String password,String postal_code) {
-         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-             @Override
-             public void onSuccess(AuthResult authResult) {
-                 HashMap<String, Object>map = new HashMap<>();
-                 map.put("username", username);
-                 map.put("email", email);
-                 map.put("postalcode",postal_code);
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("username", username);
+                map.put("email", email);
+                map.put("postalcode", postal_code);
 
-//                 List<String> postsList = new ArrayList<>();
-//                 postsList.add("firststring");
-//                 postsList.add("secondstr");
-//                 map.put("posts", postsList);
 
-                 map.put("id", auth.getCurrentUser().getUid());
 
-                 mRootRef.child("Users").child(auth.getCurrentUser().getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                     @Override
-                     public void onComplete(@NonNull Task<Void> task) {
-                         if(task.isSuccessful()){
-                             Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_SHORT).show();
-                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                             startActivity(intent);
-                             finish();
-                         }
-                     }
-                 });
-             }
-         }).addOnFailureListener(new OnFailureListener() {
-             @Override
-             public void onFailure(@NonNull Exception e) {
-                 Toast.makeText(RegisterActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
-             }
-         });
+                ArrayList<HashMap<String, Object>> emptyMarksList = new ArrayList<>();
+                HashMap<String, Object> emptyMark = new HashMap<>();
+                emptyMark.put("latitude",0.0);
+                emptyMark.put("longitude",0.0);
+                emptyMark.put("title","random title");
+                emptyMark.put("description","random des");
+                emptyMarksList.add(emptyMark);
+
+                map.put("marks", emptyMarksList);
+
+                map.put("id", auth.getCurrentUser().getUid());
+
+                mRootRef.child("Users").child(auth.getCurrentUser().getUid()).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "registration successful", Toast.LENGTH_SHORT).show();
+
+
+                            User user = new User("exampleUsername", email);
+
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.putExtra("user", user);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
