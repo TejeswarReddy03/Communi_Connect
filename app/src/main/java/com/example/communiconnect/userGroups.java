@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class userforabout extends AppCompatActivity {
+public class userGroups extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference database;
     MyAdapter myAdapter;
@@ -35,6 +35,10 @@ public class userforabout extends AppCompatActivity {
         list = new ArrayList<>();
         myAdapter = new MyAdapter(this,list);
         recyclerView.setAdapter(myAdapter);
+        Intent intent = getIntent();
+        User userr = (User) intent.getSerializableExtra("user");
+
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -44,11 +48,37 @@ public class userforabout extends AppCompatActivity {
                     String email = dataSnapshot.child("email").getValue(String.class);
                     String username = dataSnapshot.child("username").getValue(String.class);
 
-                    // Toast.makeText(getApplicationContext(),id_, Toast.LENGTH_SHORT).show();
                     user.setEmail(email);
                   //  user.setId(id_);
                     user.setUsername(username);
-                    list.add(user);
+                    String emaill="";
+                    if(userr!=null) {
+                        emaill = userr.getEmail();
+                    }
+
+
+
+                    if (userr != null) {
+                        //  Toast.makeText(getApplicationContext(),email, Toast.LENGTH_SHORT).show();
+
+                        // String usernamee = userr.getUsername();
+
+                        if(email.equals(emaill)){
+                            //Toast.makeText(getApplicationContext(),"hii", Toast.LENGTH_SHORT).show();
+
+                            list.add(user);
+                            break;
+                        }
+                        //  Toast.makeText(MakingandSeeingMarker.this, username+", "+email, Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                    else{
+                        list.add(user);
+                    }
+
+
                 }
                 myAdapter.notifyDataSetChanged();
             }

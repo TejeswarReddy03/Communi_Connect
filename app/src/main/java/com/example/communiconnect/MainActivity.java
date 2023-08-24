@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                     startActivity(intent);
                 } else if (itemId == R.id.groups) {
-                    Toast.makeText(MainActivity.this, "groups Selected", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MainActivity.this, "groups Selected", Toast.LENGTH_SHORT).show();
                     User user = new User("exampleUsername", email);
                     Intent intentt = new Intent(MainActivity.this, userlists.class);
                     intentt.putExtra("userGroups", user);
