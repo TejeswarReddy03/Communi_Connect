@@ -63,7 +63,7 @@ The groups section displays information about other members belonging to the sam
 
 1.Either download zipfile or clone the repo.
 2.Open the folder in a supported IDE(android studio)
-3.Project relies on external packages.Go through readme file in github repo to see the dependencies.
+3.Project relies on external packages.Go through readme file in github repo to see the dependencies.You should use your own Google Maps API Key in the AndroidManifest.xml file
 4.Open the project’s build files ,such as ‘build.gradle’ file.Ensure that you’ve configured the project’s dependencies according to the instructions provided in README
 5.Once the project is successfully synced without any dependency errors.you are ready to start building.
 
