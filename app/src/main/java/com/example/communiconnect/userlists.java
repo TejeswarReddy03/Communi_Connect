@@ -135,7 +135,7 @@ public class userlists extends AppCompatActivity {
                                                                                                     userrr.setUsername("USERNAME - "+groupSnashot.child("username").getValue(String.class));
 
                                                                                                     list.add(userrr);
-                                                                                                    Toast.makeText(getApplicationContext(),groupSnashot.child("email").getValue(String.class), Toast.LENGTH_SHORT).show();
+                                                                                                   // Toast.makeText(getApplicationContext(),groupSnashot.child("email").getValue(String.class), Toast.LENGTH_SHORT).show();
                                                                                                     //groupSnashot.child("username").getValue(String.class)
 
                                                                                                 }
